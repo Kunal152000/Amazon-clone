@@ -1,6 +1,7 @@
 {
   "projects": {
-    "hosting": "clone-350f1"
+    "hosting": "clone-350f1",
+    "default": "clone-350f1"
   },
   "targets": {},
   "etags": {}
