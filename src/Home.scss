@@ -3,23 +3,40 @@
   justify-content: center;
   margin-right: auto;
   margin-left: auto;
-  max-width: 1500px;
+  width: 100%;
   .home__container {
+    width: 100vw;
+    .thumbs,
+    .control-dots,
+    .carousel-status {
+      display: none;
+    }
     .home__image {
       width: 100%;
       z-index: -1;
-      margin-bottom: -150px;
       mask-image: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 1),
         rgba(0, 0, 0, 0)
       );
     }
-    .home__row {
-      display: flex;
-      z-index: 1;
-      margin-left: 5px;
-      margin-right: 5px;
+    .home__row__container {
+      margin-top: -300px;
+      .home__row {
+        display: flex;
+        z-index: 1;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .home {
+    .home__container {
+      .home__row__container {
+        margin-top: -150px;
+      }
     }
   }
 }

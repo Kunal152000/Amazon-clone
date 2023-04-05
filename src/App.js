@@ -13,11 +13,14 @@ import Login from "./Login";
 import { auth } from "./firebase";
 import { useEffect } from "react";
 import { useStateValue } from "./Stateprovider";
+import Payment from "./Payment";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import Orders from "./Orders";
 function App() {
   const [{}, dispatch] = useStateValue();
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      console.log("The user is ---->>>", authUser);
       if (authUser) {
         // the user just logged in or the user was logged in
         dispatch({
@@ -43,6 +46,9 @@ function App() {
   );
 }
 const Layout = ({ hideHeaderPaths = [] }) => {
+  const promise = loadStripe(
+    "pk_test_51MsivwSJOPEYFy3X14hVpBulOcByT58X7o7FzdV9jOkOMHUbz3SCCXgfcBbfFHh2RvjOfLbyykqMFgZE1aUVeG0700UVnAsuKF"
+  );
   const { pathname } = useLocation();
   return (
     <div className="app">
@@ -51,6 +57,15 @@ const Layout = ({ hideHeaderPaths = [] }) => {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route
+          path="/payment"
+          element={
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          }
+        />
       </Routes>
     </div>
   );

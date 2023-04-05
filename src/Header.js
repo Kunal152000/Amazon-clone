@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
@@ -12,6 +12,8 @@ const Header = () => {
     }
   };
   const [{ basket, user }, dispatch] = useStateValue();
+  const Name = user?.email?.split("@");
+  const [showNav, setShowNav] = useState(false);
   return (
     <div className="header">
       <Link to="/">
@@ -25,7 +27,7 @@ const Header = () => {
       <div className="header__nav">
         <Link to={!user && "/login"}>
           <div onClick={handleAuth} className="header__option">
-            <span className="header__optionLineOne">Hello Kunal</span>
+            <span className="header__optionLineOne">Hello {Name?.[0]}</span>
             <span className="header__optionLineTwo">
               {user ? "Sign Out" : "Sign In"}
             </span>
@@ -48,6 +50,11 @@ const Header = () => {
           </span>
         </div>
       </Link>
+      <div className="header__hamburger">
+        <div className="hamburger__line"></div>
+        <div className="hamburger__line"></div>
+        <div className="hamburger__line"></div>
+      </div>
     </div>
   );
 };

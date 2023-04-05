@@ -32,4 +32,18 @@
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
   }
+  transition: 0.5s all ease;
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 5px 10px 20px gray;
+  }
+}
+@media (max-width: 770px) {
+  .product {
+    img {
+      margin-top: 15px;
+      width: 200px;
+      height: 100px;
+    }
+  }
 }
